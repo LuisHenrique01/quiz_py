@@ -5,16 +5,20 @@ from sys import exit
 class Tela():
     def __init__(self):
         self.black = (0, 0, 0)
+        self.yellow = (255, 255, 0)
         self.clock = pygame.time.Clock()
     
-    def telaInicial(self):
-        img = pygame.image.load("entrar.png")
-        tela = pygame.display.set_mode((1239, 860), 0, 32)
+    def criaTela(self, nameScreen, tam):
+        img = pygame.image.load("%s.png"%nameScreen)
+        w, h = img.get_size()
+        redImg = pygame.transform.smoothscale(img, (int(w*0.82), int(h*0.80)))
+        
+        tela = pygame.display.set_mode(tam, 0, 32)
         tela.fill((255,255,255))
         pygame.display.set_caption("QUIZ_PY")
         #pygame.draw.rect(tela,(255,0,0),(100,200,200,100))
                
-        tela.blit(img, (0, 0))
+        tela.blit(redImg, (0, 0))
         pygame.display.flip()
         return tela
     
@@ -25,7 +29,7 @@ class Tela():
         
     def getName(self, screen):
         name = ""
-        rect = Rect((300, 500), (400, 600))
+        rect = Rect((300, 500), (600, 800))
         while True:
             self.texto(screen, name, (450, 380),self.black, 35)
             pygame.display.flip()
@@ -47,3 +51,17 @@ class Tela():
                     exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN and rect.collidepoint(mouse_pos):
                     return name
+                
+    def test(self, namePlayer):
+        tela = pygame.display.set_mode((400, 400), 0, 32)
+        pygame.display.set_caption("QUIZ_PY")
+        tela.fill(self.yellow)
+        
+        self.texto(tela, "%s!"%namePlayer, (100, 100), self.black, 20)
+        self.texto(tela, "AGUADE CONEXAO...", (100, 200), self.black, 20)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+        return tela

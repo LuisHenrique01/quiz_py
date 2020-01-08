@@ -5,9 +5,16 @@ from Tela import *
 
 t = Tela()
 pygame.init()
-telaInicial = t.telaInicial()
-nome = t.getName(telaInicial)
-print(nome)
+
+pygame.mixer.music.load('trilha.mp3')
+#pygame.mixer.music.set_volume()
+pygame.mixer.music.play()
+
+tela = t.criaTela("entrar", (1000, 680))
+nome = t.getName(tela)
+#tela = t.test(nome)
+tela = t.criaTela("p1", (1000, 680))
+
 while True:
     for event in pygame.event.get():
             if event.type == QUIT:
