@@ -25,9 +25,11 @@ class Tela():
         
     def getName(self, screen):
         name = ""
+        rect = Rect((300, 500), (400, 600))
         while True:
             self.texto(screen, name, (450, 380),self.black, 35)
             pygame.display.flip()
+            mouse_pos = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
@@ -40,7 +42,8 @@ class Tela():
                             if len(name) < 15:
                                 if c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-+_":
                                     name += c
-                if event.type == QUIT:
+                elif event.type == QUIT:
                     pygame.quit()
                     exit()
-        return name
+                elif event.type == pygame.MOUSEBUTTONDOWN and rect.collidepoint(mouse_pos):
+                    return name
