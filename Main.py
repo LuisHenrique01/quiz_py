@@ -10,10 +10,10 @@ pygame.mixer.music.load('trilha.mp3')
 #pygame.mixer.music.set_volume()
 pygame.mixer.music.play()
 
-tela = t.criaTela("entrar", (1000, 680))
+tela = t.criaTela("entrar")
 nome = t.getName(tela)
 #tela = t.test(nome)
-tela = t.criaTela("p1", (1000, 680))
+tela = t.criaTela("p1")
 
 while True:
     for event in pygame.event.get():

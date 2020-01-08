@@ -6,14 +6,14 @@ class Tela():
     def __init__(self):
         self.black = (0, 0, 0)
         self.yellow = (255, 255, 0)
-        self.clock = pygame.time.Clock()
+        self.tam = (1000, 680)
     
-    def criaTela(self, nameScreen, tam):
+    def criaTela(self, nameScreen):
         img = pygame.image.load("%s.png"%nameScreen)
         w, h = img.get_size()
-        redImg = pygame.transform.smoothscale(img, (int(w*0.82), int(h*0.80)))
+        redImg = pygame.transform.smoothscale(img, (int(w*0.80), int(h*0.80)))
         
-        tela = pygame.display.set_mode(tam, 0, 32)
+        tela = pygame.display.set_mode(self.tam, 0, 32)
         tela.fill((255,255,255))
         pygame.display.set_caption("QUIZ_PY")
         #pygame.draw.rect(tela,(255,0,0),(100,200,200,100))
@@ -29,9 +29,9 @@ class Tela():
         
     def getName(self, screen):
         name = ""
-        rect = Rect((300, 500), (600, 800))
+        rect = Rect((280, 380), (750, 450))
         while True:
-            self.texto(screen, name, (450, 380),self.black, 35)
+            self.texto(screen, name, (350, 280),self.black, 35)
             pygame.display.flip()
             mouse_pos = pygame.mouse.get_pos()
             for event in pygame.event.get():
