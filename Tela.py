@@ -50,54 +50,35 @@ class Tela():
                     exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN and rect.collidepoint(mouse_pos):
                     return name
-                
-    def test(self, namePlayer):
-        tela = pygame.display.set_mode((400, 400), 0, 32)
-        pygame.display.set_caption("QUIZ_PY")
-        tela.fill(self.yellow)
-        
-        self.texto(tela, "%s!"%namePlayer, (100, 100), self.black, 20)
-        self.texto(tela, "AGUADE CONEXAO...", (100, 200), self.black, 20)
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-        return tela
-    
+                   
     def getOpcoes(self, screen):
-        """
-        a = (50, 280) (410, 330)
-        b = (50, 440) (410, 500)
-        c = (610, 280) (960, 330)
-        d = (610, 440) (960, 500)
-        p = ()
-        n = ()
-        """
-        #self.texto(screen, ".", (410, 330),self.black, 35)
-        #pygame.display.flip()
-        #Falta pergunta e numero
         a = Rect((50, 280), (360, 80))
         b = Rect((50, 440), (360, 80))
         c = Rect((610, 280), (360, 80))
         d = Rect((610, 440), (360, 80))
+        p = Rect((220, 20), (400, 80))
+        n = Rect((460, 540), (90, 110))
         
-        return self.testa_pos([a, b, c, d])
+        return self.getOpcaoEscolhida([a, b, c, d, p, n])
         
-    def testa_pos(self, rec):
+    def getOpcaoEscolhida(self, rec):
         while True:
             mouse_pos = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 for p in rec:
                     if event.type == MOUSEBUTTONDOWN and p.collidepoint(mouse_pos):
                         if p == rec[0]:
-                            print("A")
+                            return "A"
                         if p == rec[1]:
-                            print("B")
+                            return "B"
                         if p == rec[2]:
-                            print("C")
+                            return "C"
                         if p == rec[3]:
-                            print("D")
+                            return "D"
+                        if p == rec[4]:
+                            return "P"
+                        if p == rec[5]:
+                            return "N"
                     elif event.type == pygame.QUIT:
                         pygame.quit()
                         exit()
