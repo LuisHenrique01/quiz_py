@@ -1,6 +1,7 @@
 import pygame 
 from pygame.locals import *
 from sys import exit
+from Player import *
 
 class Tela():
     def __init__(self):
@@ -82,3 +83,21 @@ class Tela():
                     elif event.type == pygame.QUIT:
                         pygame.quit()
                         exit()
+
+    def criarPodio(self, screen, p1):#Adiciona mais players
+        while True:
+            self.texto(screen, p1.getNome(), (280, 200), self.black, 45)
+            self.texto(screen, p1.getNome(), (280, 380), self.black, 45)
+            self.texto(screen, p1.getNome(), (280, 530), self.black, 45)
+            
+            self.texto(screen, str(p1.getPontuacao()), (110, 200), self.black, 45)
+            self.texto(screen, str(p1.getPontuacao()), (110, 370), self.black, 45)
+            self.texto(screen, str(p1.getPontuacao()), (110, 530), self.black, 45)
+            pygame.display.flip()
+            
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+        
